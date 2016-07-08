@@ -1,0 +1,111 @@
+*{
+	font-family: 'Ubuntu', sans-serif;
+}
+
+body{
+	background-color:#D8D8D8;
+}
+
+#mapid { 
+	width:48%;
+	padding:1%;
+	height: 500px; 
+	position: relative;
+	float:left;
+}
+object#kaart{
+	height:600px;
+	width:100%;
+}
+
+div#donutdiv{
+	float:left;
+	width:48%;
+	padding:1%;
+	text-align:center;
+}
+
+div#donutdiv h2{
+	text-align:center;
+}
+
+div#doorklikdiv{
+	clear:both;
+	text-align:center;
+	align:center;
+	padding:15px;
+}
+
+div#doorklikdiv div{
+	float:left;
+	margin: 0 5px;
+}
+
+div#NigerCongo a{
+	color:#1F77B4;
+}
+div#Austronesian a{
+	color:#FF7F0E;
+}
+div#Australian a{
+	color:#2CA02C;
+}
+div#IndoEuropean a{
+	color:#D62728;
+}
+div#SinoTibetan a{
+	color:#9467BD;
+}
+div#AfroAsiatic a{
+	color:#8C564B;
+}
+div#TransNewGuinea a{
+	color:#BCBD22;
+}
+div#Altaic a{
+	color:#17BECF;
+}
+div#OtoManguean a{
+	color:#E377C2;
+}
+div#backlink a{
+	color:#7f7f7f;
+	clear:both;
+}
+
+/*donut*/
+#chart {
+        height: 360px;
+        margin: 0 auto;                                               
+        position: relative;
+        width: 360px;
+      }
+      .tooltip {
+        background: #eee;
+        box-shadow: 0 0 5px #999999;
+        color: #333;
+        display: none;
+        font-size: 12px;
+        left: 130px;
+        padding: 10px;
+        position: absolute;
+        text-align: center;
+        top: 95px;
+        width: 80px;
+        z-index: 10;
+      }
+	  .legend {
+        font-size: 12px;
+      }
+      rect {
+        cursor: pointer;                                              
+        stroke-width: 2;
+      }
+      rect.disabled {                                                 
+        fill: transparent !important;                                 
+      }                                                               
+      h1 {                                                            
+        font-size: 28px;                                             
+        text-align: center;                                          
+      }   
+

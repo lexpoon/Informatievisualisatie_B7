@@ -1,0 +1,373 @@
+<!--bron: http://leafletjs.com/ -->
+
+<!doctype html>
+<head>
+	<title>InformatieVisualisatie</title>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css">
+	<link rel="stylesheet" href="css/infovis.css">
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+	<script src="http://d3js.org/d3.v3.min.js" charset = "utf-8"></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+
+<body>
+
+
+	<div id="mapid"  position: relative;" class="leaflet-container leaflet-fade-anim" tabindex="0">
+		<div class="leaflet-control-container">
+			<div class="leaflet-top leaflet-left">
+				<div class="leaflet-control-zoom leaflet-bar leaflet-control">
+					<a class="leaflet-control-zoom-in" href="#" title="Zoom in">
+						+
+					</a>
+					<a class="leaflet-control-zoom-out" href="#" title="Zoom out">
+						-
+					</a>
+
+				</div>
+			</div>
+			<div class="leaflet-top leaflet-right">
+			</div>
+			<div class="leaflet-bottom leaflet-left">
+			</div>
+			<div class="leaflet-bottom leaflet-right">
+				<div class="leaflet-control-attribution leaflet-control">
+					<a href="http://leafletjs.com" title="A JS library for interactive maps">
+						Leaflet
+					</a> 
+					| Map data © 
+					<a href="http://openstreetmap.org">
+						OpenStreetMap
+					</a> 
+					contributors, 
+					<a href="http://creativecommons.org/licenses/by-sa/2.0/">
+						CC-BY-SA
+					</a>
+					, Imagery © 
+					<a href="http://mapbox.com">
+						Mapbox
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+		<div id="donutdiv">
+		<h2>Most common language families</h2>
+		<div id="chart"></div>
+		</div>
+
+		<div id="doorklikdiv">
+			<h3>Filter by family:</h3>
+			<div id="NigerCongo">
+				<h3><a href="NigerCongo.html">Niger-Congo</a></h3>
+			</div>
+			<div id="Austronesian">
+				<h3><a href="Austronesian.html">Austronesian</a></h3>
+			</div>
+
+			<div id="Australian">
+				<h3><a href="Australian.html">Australian</a></h3>
+			</div>
+
+			<div id="IndoEuropean">
+				<h3><a href="IndoEuropean.html">Indo-European</a></h3>
+			</div>
+
+			<div id="SinoTibetan">
+				<h3><a href="SinoTibetan.html">Sino-Tibetan</a></h3>
+			</div>
+
+			<div id="AfroAsiatic"0>
+				<h3><a href="AfroAsiatic.html">Afro-Asiatic</a></h3>
+			</div>
+
+			<div id="Altaic">
+				<h3><a href="Altaic.html">Altaic</a></h3>
+			</div>
+
+			<div id="OtoManguean">
+				<h3><a href="OtoManguean.html">Oto-Manguean</a></h3>
+			</div>
+
+			<div id="backlink">
+			<h3><a href = "kaart3.html">Back to families</a></h3>
+			</div>
+		</div>
+
+
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script>
+
+		d3.csv("data/language.csv", function(data){
+					var NigerCongo = [];
+					var Austronesian = [];
+					var Australian = [];
+					var IndoEuropean = [];
+					var SinoTibetan = [];
+					var AfroAsiatic = [];
+					var TransNewGuinea = [];
+					var Altaic = [];
+					var OtoManguean = [];
+					var remaining = [];
+
+					for(line in data){
+						if(data[line]["family"] == "Trans-New Guinea"){					    
+						    if(data[line]["genus"] == "Eastern Highlands"){
+							    var circle= L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+							    	color: "#1F77B4",
+								    opacity: 0.8} ).bindPopup(data[line]["Name"]);
+								NigerCongo.push(circle);
+							}
+							else if(data[line]["genus"] == 'Madang'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color: "#FF7F0E",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								Austronesian.push(circle);
+							}
+							else if(data[line]["genus"] == 'Chimbu'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color: "#2CA02C",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								Australian.push(circle);
+							}
+							else if(data[line]["genus"] == 'Finisterre-Huon'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color: "#D62728",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								IndoEuropean.push(circle);
+							}
+							else if(data[line]["genus"] ==  'Awju-Dumut'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color: "#9467BD",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								SinoTibetan.push(circle);
+							}
+							else if(data[line]["genus"] == 'Binanderean'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color:  "#8C564B",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								AfroAsiatic.push(circle);
+							}
+							else if(data[line]["genus"] == 'Angan'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color:  "#BCBD22",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								TransNewGuinea.push(circle);
+							}
+							else if(data[line]["genus"] == 'Koiarian'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color:  "#17BECF",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								Altaic.push(circle);
+							}
+							else if(data[line]["genus"] == 'Ok'){
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color:  "#E377C2",
+								    opacity: 0.8
+								}).bindPopup(data[line]["Name"]);
+								OtoManguean.push(circle);
+							}
+							else{
+								var circle = L.circle([data[line]["latitude"],data[line]["longitude"]], 50, {
+									color:  "#7f7f7f",
+								    opacity:0.8
+							    }).bindPopup(data[line]["Name"]);
+							    remaining.push(circle);
+							};
+						};
+					};
+								
+
+					var mymap = L.map('mapid').setView([0, 0], 1);
+
+					L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiMTc4NDkxIiwiYSI6ImNpcHNwN2gydzAwMXlpNG0yc2d3aG1lZXUifQ.JE_96HtuPC3f1EHM8tfRBA", {
+						maxZoom: 18,
+						id: 'mapbox.greyscale'
+					}).addTo(mymap);
+
+					var baseMaps = {}
+
+					var overlayMaps = {
+					    "Eastern Highlands" : L.layerGroup(NigerCongo),
+					    "Madang" : L.layerGroup(Austronesian),
+						"Chimbu" : L.layerGroup(Australian),
+						"Finisterre-Huon" : L.layerGroup(IndoEuropean),
+						"Awju-Dumut" : L.layerGroup(SinoTibetan),
+						"Binanderean" : L.layerGroup(AfroAsiatic),
+						"Angan" : L.layerGroup(TransNewGuinea),
+						"Koiarian" : L.layerGroup(Altaic),
+						"Ok" : L.layerGroup(OtoManguean), 
+						"remaining" : L.layerGroup(remaining)
+					};
+					lcontrol = L.control.layers(baseMaps, overlayMaps).addTo(mymap);
+					
+				
+					
+
+
+
+
+
+
+
+
+      (function(d3) {
+        var dataset = [
+          { label: 'Eastern Highlands', count: 14, enabled: true }, 
+          { label: 'Madang', count: 13, enabled: true  },
+          { label: 'Chimbu', count: 8, enabled: true  },
+          { label: 'Finisterre-Huon', count: 8, enabled: true  },
+		  { label: 'Awju-Dumut', count: 5, enabled: true  },
+		  { label: 'Binanderean', count: 5, enabled: true  },
+		  { label: 'Angan', count: 5, enabled:true },
+		  { label: 'Koiarian', count: 5, enabled:true },
+		  { label: 'Ok', count: 4, enabled:true },
+		  { label: 'remaining', count: 21, enabled: true }
+        ];
+        
+        var width = 400;
+        var height = 400;
+        var radius = Math.min(width, height) / 2;
+        var donutWidth = 70;
+        var legendRectSize = 18;                                  
+        var legendSpacing = 4;                                    
+
+        
+        var color = d3.scale.ordinal()
+ 			.range(["#1F77B4", "#FF7F0E", "#2CA02C", "#D62728", "#9467BD", "#8C564B", "#BCBD22", "#17BECF", "#E377C2", "#7f7f7f"]);
+
+        var svg = d3.select('#chart')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', 'translate(' + (width / 2) + 
+            ',' + (height / 2) + ')');
+
+        var arc = d3.svg.arc()
+          .innerRadius(radius - donutWidth)
+          .outerRadius(radius);
+
+        var pie = d3.layout.pie()
+          .value(function(d) { return d.count; })
+          .sort(null);
+		
+		var tooltip = d3.select('#chart')             
+		.append('div')                             
+		.attr('class', 'tooltip');                 
+		tooltip.append('div')                      
+		.attr('class', 'label');                   
+		tooltip.append('div')                      
+		.attr('class', 'count');                   
+		tooltip.append('div')                      
+		.attr('class', 'percent');                 
+
+        var path = svg.selectAll('path')
+          .data(pie(dataset))
+          .enter()
+          .append('path')
+          .attr('d', arc)
+          .attr('fill', function(d, i) { 
+            return color(d.data.label);
+          })
+		  .each(function(d) { this._current = d; });
+		  
+		path.on('mouseover', function(d) {
+			var total = d3.sum(dataset.map(function(d) {
+			return (d.enabled) ? d.count : 0;		
+ 		}));                                    
+		path.on('mouseout', function(d) {       
+ 
+		});                                   
+
+		path.on('mouseover', function(d) {
+		var total = d3.sum(dataset.map(function(d) {
+		return d.count;
+		}));
+
+		var percent = Math.round(1000 * d.data.count / total) / 10;
+		tooltip.select('.label').html(d.data.label);
+		tooltip.select('.count').html(d.data.count); 
+		tooltip.select('.percent').html(percent + '%'); 
+		tooltip.style('display', 'block');
+		});
+		
+		path.on('mouseout', function() {
+		tooltip.style('display', 'none');
+		});
+        
+		var legend = svg.selectAll('.legend') 
+          .data(color.domain())               
+          .enter()                            
+          .append('g')                        
+          .attr('class', 'legend')                              
+          .attr('transform', function(d, i) {                   
+            var height = legendRectSize + legendSpacing;        
+            var offset =  height * color.domain().length / 2;   
+            var horz = -2 * legendRectSize;                     
+            var vert = i * height - offset;                     
+            return 'translate(' + horz + ',' + vert + ')';      
+          });                                                   
+
+        legend.append('rect')                                   
+          .attr('width', legendRectSize)                        
+          .attr('height', legendRectSize)                       
+          .style('fill', color)                                 
+          .style('stroke', color)
+		  .on('click', function(label) {
+			  var rect = d3.select(this);
+			  var enabled = true;
+			  var totalEnabled = d3.sum(dataset.map(function(d) {
+			  return (d.enabled) ? 1 : 0;
+		  }));
+		  
+		  if (rect.attr('class') === 'disabled') {
+		  rect.attr('class', '');
+		  } else {
+		  if (totalEnabled < 2) return;
+		  rect.attr('class', 'disabled');
+		  enabled = false;
+		  }
+		  
+		  pie.value(function(d) {
+		  if (d.label === label) d.enabled = enabled;
+		  return (d.enabled) ? d.count : 0;
+		  });
+
+		  path = path.data(pie(dataset));
+		  path.transition()
+		  .duration(1250)
+		  .attrTween('d', function(d) {
+		  var interpolate = d3.interpolate(this._current, d);
+		  this._current = interpolate(0);
+		  return function(t) {
+		  return arc(interpolate(t));
+		  };
+		  });
+		  });
+          
+        legend.append('text')                                    
+          .attr('x', legendRectSize + legendSpacing)             
+          .attr('y', legendRectSize - legendSpacing)             
+          .text(function(d) { return d; });                      
+		});  	
+      })(window.d3);
+      });
+    </script>
+	
+</body>
